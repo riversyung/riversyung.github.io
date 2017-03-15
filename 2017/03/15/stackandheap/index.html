@@ -61,7 +61,7 @@ Each Java">
 定义在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域
 栈 stacks
 Each Java">
-<meta property="og:updated_time" content="2017-03-15T14:42:12.638Z">
+<meta property="og:updated_time" content="2017-03-15T14:43:27.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆和栈">
 <meta name="twitter:description" content="本身总结清楚就很难，想到哪里就总结到哪里吧。保持更新
@@ -204,8 +204,10 @@ Each Java">
 <li>如果需要占据的空间比栈本身允许的空间都大的话，那就可以会报StackOverFlowError</li>
 </ul>
 </li>
-<li>If Java Virtual Machine stacks can be dynamically expanded,and expansion is attempted but insufficent memory can be made available to effect the expansion,or if insufficient memory can be made available to create the initial Java Virtual Machine stack for a new thread, the Java Virtual Machine throws an OutOfMemoryError</li>
+<li>If Java Virtual Machine stacks can be dynamically expanded,and expansion is attempted but insufficent memory can be made available to effect the expansion,or if insufficient memory can be made available to create the initial Java Virtual Machine stack for a new thread, the Java Virtual Machine throws an OutOfMemoryError<ul>
 <li>如果栈空间可以动态分配，可以但剩余的空间不够了，就会报OutOfMemoryError</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -282,12 +284,13 @@ Each Java">
 </li>
 <li>又叫静态区，和堆一样，被所有线程共享</li>
 <li>方法区包括所有的class和static变量</li>
-<li>方法区包含的都是在整个程序中永远唯一的元素，如class、static<h2 id="不是结尾"><a href="#不是结尾" class="headerlink" title="不是结尾"></a>不是结尾</h2>先写这点，后面的再补充，主要是感觉到，还是要和JVM体系整体都涉及到，包括JVM内存结构，垃圾回收算法等。相关的文章总结时，涉及这部分，再填进来吧。</li>
+<li>方法区包含的都是在整个程序中永远唯一的元素，如class、static</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<h2 id="不是结尾"><a href="#不是结尾" class="headerlink" title="不是结尾"></a>不是结尾</h2><p>先写这点，后面的再补充，主要是感觉到，还是要和JVM体系整体都涉及到，包括JVM内存结构，垃圾回收算法等。相关的文章总结时，涉及这部分，再填进来吧。</p>
 
             </div>
           
@@ -308,7 +311,7 @@ Each Java">
     2017
     <span class="footer-author">Rivers Yung.</span>
     <span class="power-by">
-        由 <a class="hexo-link" href="https://hexo.io/">Hexo </a> 强力驱动
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo </a>
     </span>
 </span>
 
