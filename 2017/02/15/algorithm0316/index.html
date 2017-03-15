@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="algorithm0316"/>
+
+
+
+
+  <meta name="keywords" content="algo," />
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Rivers">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/02/15/algorithm0316/"/>
+
+
+<meta name="description" content="Divide-and-Conquer分治算法
+表现形式
+
+12T(n) = theta(1)     if n&amp;lt;cT(n) = aT(n/b) + D(n) + C(n)    otherwise
+
+从时间复杂度的角度分析一下
+
+Divide阶段
+将问题分解成a个子问题
+每个自问题的规模为原问题的n/b
+划分时间是D(n)
+
+
+Conquer阶段
+递归调用（直到子问题足够小）
+Conquer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="algorithm0316">
+<meta property="og:url" content="http://yoursite.com/2017/02/15/algorithm0316/index.html">
+<meta property="og:site_name" content="Rivers">
+<meta property="og:description" content="Divide-and-Conquer分治算法
+表现形式
+
+12T(n) = theta(1)     if n&amp;lt;cT(n) = aT(n/b) + D(n) + C(n)    otherwise
+
+从时间复杂度的角度分析一下
+
+Divide阶段
+将问题分解成a个子问题
+每个自问题的规模为原问题的n/b
+划分时间是D(n)
+
+
+Conquer阶段
+递归调用（直到子问题足够小）
+Conquer">
+<meta property="og:updated_time" content="2017-03-15T11:42:03.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="algorithm0316">
+<meta name="twitter:description" content="Divide-and-Conquer分治算法
+表现形式
+
+12T(n) = theta(1)     if n&amp;lt;cT(n) = aT(n/b) + D(n) + C(n)    otherwise
+
+从时间复杂度的角度分析一下
+
+Divide阶段
+将问题分解成a个子问题
+每个自问题的规模为原问题的n/b
+划分时间是D(n)
+
+
+Conquer阶段
+递归调用（直到子问题足够小）
+Conquer">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> algorithm0316 - Rivers </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Rivers</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          algorithm0316
+        
+      </h1>
+
+      <time class="post-time">
+          Feb 15 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="Divide-and-Conquer分治算法"><a href="#Divide-and-Conquer分治算法" class="headerlink" title="Divide-and-Conquer分治算法"></a>Divide-and-Conquer分治算法</h3><ul>
+<li>表现形式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">T(n) = theta(1)     if n&lt;c</div><div class="line">T(n) = aT(n/b) + D(n) + C(n)    otherwise</div></pre></td></tr></table></figure>
+<ul>
+<li><p>从时间复杂度的角度分析一下</p>
+<ul>
+<li>Divide阶段<ul>
+<li>将问题分解成a个子问题</li>
+<li>每个自问题的规模为原问题的n/b</li>
+<li>划分时间是D(n)</li>
+</ul>
+</li>
+<li>Conquer阶段<ul>
+<li>递归调用（直到子问题足够小）</li>
+<li>Conquer时间 = aT(n/b)</li>
+</ul>
+</li>
+<li>Combine阶段<ul>
+<li>C(n) 合并阶段的时间，一般线性，可以直接得到</li>
+</ul>
+</li>
+<li><em>这里时间复杂度计算的时候，大多数情况下都可以直接用Master定理求解</em></li>
+</ul>
+</li>
+<li><p><em>Master定理小解</em></p>
+<ul>
+<li>T(n) = aT(n/b) + f(n), 则T(n)可以如下求解</li>
+<li>若f(n) = O(n^(logb^(a-e))) ,e&gt;0是常数，则T(n) = theata(n^(logb^(a)))</li>
+<li>若f(n) = theta(n^logb^(a)), 则T(n) = theta(n^(logb^(a)lgn)</li>
+<li>若f(n) = omiga(n^logb^(a+e)) ,e&gt;0的常数，则T(n) = theta(f(n))</li>
+<li><em>Master定理可以直观理解一下，谁大就趋近于谁</em></li>
+</ul>
+</li>
+<li><p>实例：求一个集合中的最大数算法</p>
+</li>
+</ul>
+<pre><code class="Java">
+</code></pre>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/algo/">algo</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/03/14/hello-world/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Hello World</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2016 -
+    
+    2017
+    <span class="footer-author">Rivers Yung.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo </a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
