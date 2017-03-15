@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="堆和栈"/>
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Rivers">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/03/15/stackandheap/"/>
+
+
+<meta name="description" content="本身总结清楚就很难，想到哪里就总结到哪里吧。保持更新
+
+大致思路简单罗列一下大致思路吧，不然写着写着，就忘了要写什么了
+
+堆和栈的官方定义
+具体是如何实现的（最好是有代码级别的说明）
+执行效率上面有什么区别
+都有哪些坑
+
+定义在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域
+栈 stacks
+Each Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆和栈">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/stackandheap/index.html">
+<meta property="og:site_name" content="Rivers">
+<meta property="og:description" content="本身总结清楚就很难，想到哪里就总结到哪里吧。保持更新
+
+大致思路简单罗列一下大致思路吧，不然写着写着，就忘了要写什么了
+
+堆和栈的官方定义
+具体是如何实现的（最好是有代码级别的说明）
+执行效率上面有什么区别
+都有哪些坑
+
+定义在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域
+栈 stacks
+Each Java">
+<meta property="og:updated_time" content="2017-03-15T14:42:12.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="堆和栈">
+<meta name="twitter:description" content="本身总结清楚就很难，想到哪里就总结到哪里吧。保持更新
+
+大致思路简单罗列一下大致思路吧，不然写着写着，就忘了要写什么了
+
+堆和栈的官方定义
+具体是如何实现的（最好是有代码级别的说明）
+执行效率上面有什么区别
+都有哪些坑
+
+定义在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域
+栈 stacks
+Each Java">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 堆和栈 - Rivers </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Rivers</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          堆和栈
+        
+      </h1>
+
+      <time class="post-time">
+          Mar 15 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <blockquote>
+<p>本身总结清楚就很难，想到哪里就总结到哪里吧。保持更新</p>
+</blockquote>
+<h3 id="大致思路"><a href="#大致思路" class="headerlink" title="大致思路"></a>大致思路</h3><p>简单罗列一下大致思路吧，不然写着写着，就忘了要写什么了</p>
+<ul>
+<li>堆和栈的官方定义</li>
+<li>具体是如何实现的（最好是有代码级别的说明）</li>
+<li>执行效率上面有什么区别</li>
+<li>都有哪些坑</li>
+</ul>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域</p>
+<h4 id="栈-stacks"><a href="#栈-stacks" class="headerlink" title="栈 stacks"></a>栈 stacks</h4><ul>
+<li>Each Java Virtual Machine thread has a private Java Virtual Machine Stack<ul>
+<li>每一个虚拟机线程都有一个私有的栈空间</li>
+</ul>
+</li>
+<li>created at the same time as the thread<ul>
+<li>在线程创建的时候创建栈</li>
+</ul>
+</li>
+<li>A Java Virtual Machine stack stores frames.<ul>
+<li>虚拟机的栈存储帧</li>
+</ul>
+</li>
+<li>it holds local variables and partial result,and plays a part in method invocation and return.<ul>
+<li>它用来存储本地变量和局部结果，在方法调用和返回时起部分作用</li>
+</ul>
+</li>
+<li>Because the Java Virtual Machine stack is never manipulated directly except to push and pop frames,frames may be heap allocated.<ul>
+<li>因为栈只能进行帧的进出操作，帧应该由堆来分配内存（实质就是说，栈里面保持对象的引用，对里面是对象的具体）</li>
+</ul>
+</li>
+<li>The memory for a Java Virtual Machine stack does not need to be contiguous<ul>
+<li>栈空间不需要连续</li>
+</ul>
+</li>
+<li>A Java Virtual Machine implementation may provide the programmer or the user control over the initial size of Java Virtual stacks,as well as,in the case of dynamically expanding or contracting Java Virtual Machine stacks,control over the maximum and minimun sizes<ul>
+<li>栈的大小可以由程序员来调整</li>
+</ul>
+</li>
+<li>The following exceptional conditions are associated with Java Virtual Machine stacks:<ul>
+<li>If the computaion in the thread requires a larger Java Virtual Machine stack than is premitted, the Java Virtual Machine throws a StckOverflowError<ul>
+<li>如果需要占据的空间比栈本身允许的空间都大的话，那就可以会报StackOverFlowError</li>
+</ul>
+</li>
+<li>If Java Virtual Machine stacks can be dynamically expanded,and expansion is attempted but insufficent memory can be made available to effect the expansion,or if insufficient memory can be made available to create the initial Java Virtual Machine stack for a new thread, the Java Virtual Machine throws an OutOfMemoryError</li>
+<li>如果栈空间可以动态分配，可以但剩余的空间不够了，就会报OutOfMemoryError</li>
+</ul>
+</li>
+</ul>
+<h4 id="堆-heap"><a href="#堆-heap" class="headerlink" title="堆 heap"></a>堆 heap</h4><ul>
+<li>The Java Virtual Machine has a heap that is shared among all Java Virtual Machine threads.<ul>
+<li>一个Java虚拟机中的堆空间是所有线程共享的</li>
+</ul>
+</li>
+<li>The heap is the run-time data area from which memory for all class instances and arrays is allocated<ul>
+<li>堆存储运行时的数据，包括所有的类实例和数组的分配</li>
+</ul>
+</li>
+<li>The heap is created on virtual machine start-up<ul>
+<li>堆在虚拟机初始化启动时分配</li>
+</ul>
+</li>
+<li>Heap storage for objects is reclaimed by an automatic storage management system(konwn as a garbage colector)<ul>
+<li>堆空间由垃圾回收器进行回收</li>
+</ul>
+</li>
+<li>object are never explicitly deallocated<ul>
+<li>但并不进行明确的堆空间释放</li>
+</ul>
+</li>
+<li>The Java Virtual Machine assumes no particular type of automatic storage management system,and the storage management technique may be chosen according to the implementor’s system requirements.<ul>
+<li>堆空间的自动存储管理技术的选择可以依据系统的需要</li>
+</ul>
+</li>
+<li>The heap may be of a fixed size or may be expanded as required by the computation and may be contracted fi a larger heap becomes unnecessary.<ul>
+<li>对空间可以是固定的或者是动态分配的</li>
+</ul>
+</li>
+<li>The memory for the heap does not need to be contiguous<ul>
+<li>堆空间不需要连续</li>
+</ul>
+</li>
+<li>exceptional: if a computaion requires more heap than can be made available by the automatic storage management system,the Java Virtual machine throws an OutOfMemoryError.<ul>
+<li>堆空间异常：需要大于剩余，报OutOfMemoryError</li>
+</ul>
+</li>
+</ul>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
+<li>JVM栈是运行时的单位，JVM堆是存储的单位<ul>
+<li>JVM栈代表了处理逻辑，JVM堆代表了数据</li>
+</ul>
+</li>
+<li>栈空间是独享的，堆空间是共享的<ul>
+<li>一个线程就有一个栈与之对应，因为不同的线程行逻辑不同，因此需要一个独立的线程JVM栈</li>
+<li>堆负责存储对象信息，能够实现共享，方便数据的交互</li>
+</ul>
+</li>
+<li>存什么<ul>
+<li>栈中存储的都是根当前线程相关的信息。包括局部变量，程序运行状态，方法返回值等<ul>
+<li>说白了，栈中存储的就是基本数据类型和堆中对象的引用</li>
+<li>基本类型也放在栈中，大小确定，占用空间不多，放在栈中，很好处理</li>
+</ul>
+</li>
+<li>堆中存储对象本身，数组</li>
+</ul>
+</li>
+<li>这里想引用一下《深入理解Java虚拟机》<ul>
+<li>JVM内存分为3个分区</li>
+<li>堆区（Heap）<ul>
+<li>只存对象本身，不存基本类型和引用对象</li>
+<li>JVM只有一个堆区，并被所有线程共享</li>
+</ul>
+</li>
+<li>栈区（Stack）<ul>
+<li>栈中只保存基础数据类型的对象和对象引用</li>
+<li>每个线程一个栈区，每个栈区中的数据都是私有的，其他栈不能访问</li>
+<li>栈分三个部分：基本类型变量区、执行环境上下文、操作指令区<ul>
+<li>方法区</li>
+</ul>
+</li>
+<li>又叫静态区，和堆一样，被所有线程共享</li>
+<li>方法区包括所有的class和static变量</li>
+<li>方法区包含的都是在整个程序中永远唯一的元素，如class、static<h2 id="不是结尾"><a href="#不是结尾" class="headerlink" title="不是结尾"></a>不是结尾</h2>先写这点，后面的再补充，主要是感觉到，还是要和JVM体系整体都涉及到，包括JVM内存结构，垃圾回收算法等。相关的文章总结时，涉及这部分，再填进来吧。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          
+
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2016 -
+    
+    2017
+    <span class="footer-author">Rivers Yung.</span>
+    <span class="power-by">
+        由 <a class="hexo-link" href="https://hexo.io/">Hexo </a> 强力驱动
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
