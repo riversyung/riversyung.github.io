@@ -61,7 +61,8 @@ Each Java">
 定义在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域
 栈 stacks
 Each Java">
-<meta property="og:updated_time" content="2017-03-15T14:43:27.005Z">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/331425/201606/331425-20160623115838891-809895495.png">
+<meta property="og:updated_time" content="2017-03-16T06:03:48.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆和栈">
 <meta name="twitter:description" content="本身总结清楚就很难，想到哪里就总结到哪里吧。保持更新
@@ -76,6 +77,7 @@ Each Java">
 定义在这里不得不说的一句话就是，JVM中的堆，不是数据结构里的堆，数据结构里面是一种树形存储结构，而这里是用于管理动态生命周期的内存区域
 栈 stacks
 Each Java">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/331425/201606/331425-20160623115838891-809895495.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
@@ -201,7 +203,8 @@ Each Java">
 </li>
 <li>The following exceptional conditions are associated with Java Virtual Machine stacks:<ul>
 <li>If the computaion in the thread requires a larger Java Virtual Machine stack than is premitted, the Java Virtual Machine throws a StckOverflowError<ul>
-<li>如果需要占据的空间比栈本身允许的空间都大的话，那就可以会报StackOverFlowError</li>
+<li><del>如果需要占据的空间比栈本身允许的空间都大的话</del>，那就可以会报StackOverFlowError</li>
+<li>这里应该是线程请求的深度大于虚拟机锁允许的深度</li>
 </ul>
 </li>
 <li>If Java Virtual Machine stacks can be dynamically expanded,and expansion is attempted but insufficent memory can be made available to effect the expansion,or if insufficient memory can be made available to create the initial Java Virtual Machine stack for a new thread, the Java Virtual Machine throws an OutOfMemoryError<ul>
@@ -291,6 +294,35 @@ Each Java">
 </li>
 </ul>
 <h2 id="不是结尾"><a href="#不是结尾" class="headerlink" title="不是结尾"></a>不是结尾</h2><p>先写这点，后面的再补充，主要是感觉到，还是要和JVM体系整体都涉及到，包括JVM内存结构，垃圾回收算法等。相关的文章总结时，涉及这部分，再填进来吧。</p>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><blockquote>
+<p>这部分更新的内容，是把Java内存结构补充在这里，因为堆栈理解清楚了，内存结构就有了<br><img src="http://images2015.cnblogs.com/blog/331425/201606/331425-20160623115838891-809895495.png" alt="JVM"></p>
+</blockquote>
+<p>如上，是JVM内存结构布局：  </p>
+<ul>
+<li>堆内存 Heap<ul>
+<li>由年轻代(Young Generation)和老年代(Old Generation)组成。</li>
+<li>年轻代又细分为Eden空间，From Survivor空间，To Survivor空间</li>
+</ul>
+</li>
+<li>方法区 Method Area<ul>
+<li>存储类信息，常量，静态变量等数据。是线程共享的</li>
+<li>Java虚拟机规范把方法区描述为堆的一个逻辑部分，但其有一个别名Non-Heap非堆</li>
+<li>hotSpot虚拟机开发者称方法区为“永久代”（Permanent Generation）</li>
+</ul>
+</li>
+<li>栈<ul>
+<li>分为Java虚拟机栈和本地方法栈</li>
+<li>Java虚拟机栈线程私有，生命周期与线程相同<ul>
+<li>每个方法被执行的时候，都会同时创建一个栈帧（Stack Frame）用于存储局部变量表，操作栈，动态链接，方法出口等信息。每个方法被调用直至执行完成的过程，就对应这一个帧栈在虚拟机中从入栈到出栈的过程</li>
+</ul>
+</li>
+<li>本地方法栈（Native Method Stacks）<ul>
+<li>与虚拟机栈所发挥的作用非常相似，区别在于虚拟机栈为虚拟机执行Java方法（字节码）的服务，而本地方法栈则是为虚拟机使用到的Native方法服务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
             </div>
           
