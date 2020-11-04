@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 小红帽爱Beagle
 subtitle:
 description:
 keywords:
-author: John Doe
+author: Rivers Yung
 language:
 timezone:
 
@@ -81,3 +81,11 @@ deploy:
   type: git 
   repo: https://github.com/riversyung/riversyung.github.io.git
   branch: master
+
+
+# menu
+menu:
+  Home: /
+  Archives: /archives
+  Categories: /categories
+  Tags: /tags
