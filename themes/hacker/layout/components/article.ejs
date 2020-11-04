@@ -39,10 +39,14 @@
   </div>
   <% } %>
 
+
   <div class="article-content">
     <div class="entry">
       <% if (item.excerpt && index){ %>
         <%- item.excerpt %>
+        <% if (theme.read_more_btn){ %>
+          <p><a class="excerpt-btn" href="<%- item.path %>"><span><%- __('read_more') %></span></a></p>
+        <% } %>
       <% } else { %>
         <%- item.content %>
       <% } %>
@@ -95,6 +99,6 @@
     <% } %>
   </div>
 </article>
-<% if (!index && (theme.disqus || theme.gitment || theme.valine)) { %>
+<% if (!index) { %>
   <%- partial('comment') %>
 <% } %>

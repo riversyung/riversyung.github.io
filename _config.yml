@@ -88,4 +88,10 @@ menu:
   Home: /
   Archives: /archives
   Categories: /categories
-  Tags: /tags
+#  Tags: /tags
+  About: /about
+
+# 文章目录
+toc:
+  maxdepth: 3
+
